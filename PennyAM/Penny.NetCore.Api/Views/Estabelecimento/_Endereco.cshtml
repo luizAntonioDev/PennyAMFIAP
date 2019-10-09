@@ -1,0 +1,52 @@
+﻿@model Endereco
+    <div class="container">
+        <div class="row">
+            <div class="form-group-sm col-sm-4">
+                <label asp-for="Logradouro">Logradouro</label>
+                <input asp-for="Logradouro" class="form-control" />
+            </div>
+            <div class="form-group-sm col-sm-2">
+                <label asp-for="Numero">Numero</label>
+                <input asp-for="Numero" class="form-control" />
+            </div>
+            <div class="form-group-sm col-sm-3">
+                <label asp-for="Bairro">Bairro</label>
+                <input asp-for="Bairro" class="form-control" />
+            </div>
+            <div class="form-group-sm col-sm-3">
+                <label asp-for="Cidade">Cidade</label>
+                <input asp-for="Cidade" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group-sm col-sm-4">
+                <label asp-for="Cep">Cep</label>
+                <input asp-for="Cep" class="form-control" />
+            </div>
+            <div class="form-group-sm col-sm-3">
+                <label asp-for="Estado"></label>
+                <select asp-for="Estado" class="form-control"
+                        asp-items="@Html.GetEnumSelectList<Estado>().OrderBy(m => m.Text)">
+                    <option>Selecione</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+@*
+    int UsuarioId { get; set; }
+    int EnderecoId { get; set; }
+    string Logradouro { get; set; }
+    int  Numero { get; set; }
+    int Cep { get; set; }
+    string Bairro { get; set; }
+    string Cidade { get; set; }
+    Estado Estado { get; set; }
+
+*@
