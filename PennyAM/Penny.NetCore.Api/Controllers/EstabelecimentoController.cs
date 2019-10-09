@@ -12,5 +12,12 @@ namespace Penny.NetCore.Api.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult Cadastrar()
+        {
+            return View();
+        }
+
+
     }
 }
