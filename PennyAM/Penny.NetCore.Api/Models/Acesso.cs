@@ -13,9 +13,8 @@ namespace Penny.NetCore.Api.Models
 
         [DataType(DataType.Password)]
         public string Senha { get; set; }
-        public Usuario usuario { get; set; }
+
 
         public TipoUsuario Tipo { get; set; }
-
     }
 }

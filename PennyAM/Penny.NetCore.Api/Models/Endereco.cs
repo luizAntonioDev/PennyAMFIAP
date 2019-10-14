@@ -7,7 +7,6 @@ namespace Penny.NetCore.Api.Models
 {
     public class Endereco
     {
-        public int UsuarioId { get; set; }
         public int EnderecoId { get; set; }
         public string Logradouro { get; set; }
         public int  Numero { get; set; }

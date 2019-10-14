@@ -13,6 +13,8 @@ namespace Penny.NetCore.Api.Models
         public Estabelecimento Unidade { get; set; }
         public Estabelecimento Estabelecimento { get; set; }
         public decimal ValorTotal { get; set; }
+        public int CarrinhoCompraId { get; set; }
+        public CarrinhoCompra CarrinhoCompra { get; set; }
 
     }
 }

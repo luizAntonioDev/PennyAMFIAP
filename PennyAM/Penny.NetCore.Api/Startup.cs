@@ -31,11 +31,9 @@ namespace Penny.NetCore.Api
             //Injecao de dependecia dos repositories
 
             services.AddScoped<IAcessoRepository, AcessoRepository>();
-            services.AddScoped<IBancoRepository, BancoRepository>();
             services.AddScoped<ICarrinhoCompraRepository, CarrinhoCompraRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<ICompraRepository, CompraRepository>();
-            services.AddScoped<IContaBancariaRepository, ContaBancariaRepository>();
             services.AddScoped<IEnderecoRepository, EnderecoRepository>();
             services.AddScoped<IEstabelecimentoRepository, EstabelecimentoRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
@@ -45,7 +43,7 @@ namespace Penny.NetCore.Api
 
             services.AddDbContext<PennyContext>(
                 options => options.UseSqlServer(Configuration
-                                  .GetConnectionString("connexao")));
+                                  .GetConnectionString("conexao")));
 
             services.Configure<CookiePolicyOptions>(options =>
             {

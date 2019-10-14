@@ -11,6 +11,8 @@ namespace Penny.NetCore.Api.Models
         public List<Produto> Produtos { get; set; }
         public DateTime DataCarrinho { get; set; }
         public bool Ativo { get; set; }
+        public int ClienteId { get; set; }
+        public Cliente Cliente { get; set; }
 
     }
 }

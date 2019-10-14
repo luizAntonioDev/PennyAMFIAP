@@ -9,9 +9,9 @@ namespace Penny.NetCore.Api.Models
     {
         public int ClienteId { get; set; }
         public int Cpf { get; set; }
-        public DateTime DataNascimento { get; set; }
-        public ContaBancaria Cartao { get; set; }
+        public DateTime DataNascimento { get; set; }       
         public decimal CashDisponivel { get; set; }
+        public List<CarrinhoCompra> CarrinhosCompras { get; set; }
 
     }
 }
