@@ -1,0 +1,14 @@
+﻿@model Produto
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h2>Cadastrar Produto</h2>
+<form asp-action="cadastrar">
+
+    <partial name="_Acesso" />
+
+    <partial name="_Usuario" />
+
+    <partial name="_Endereco" />
+</form>
