@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Penny.NetCore.Api.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,11 +10,11 @@ namespace Penny.NetCore.Api.Controllers
     public class AcessoController : Controller
     {
 
-        private readonly IAcessoRespository _acessoRepository;
+        private IAcessoRepository _acessoRepository;
 
-        public AcessoController(IAcessoRespository acessoRespository)
+        public AcessoController(IAcessoRepository acessoRepository)
         {
-            _acessoRepository = acessoRespository;
+            _acessoRepository = acessoRepository;
         }
 
         public IActionResult Index()

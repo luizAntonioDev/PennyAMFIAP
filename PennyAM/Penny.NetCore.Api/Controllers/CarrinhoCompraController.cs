@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Penny.NetCore.Api.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,16 @@ namespace Penny.NetCore.Api.Controllers
 {
     public class CarrinhoCompraController : Controller
     {
+        private ICarrinhoCompraRepository _carrinhoCompraRepository;
+        private IClienteRepository _clienteRepository;
+
+        public CarrinhoCompraController(ICarrinhoCompraRepository carrinhoCompraRepository,
+            IClienteRepository clienteRepository)
+        {
+            _carrinhoCompraRepository = carrinhoCompraRepository;
+            _clienteRepository = clienteRepository;
+        }
+
         public IActionResult Index()
         {
             return View();

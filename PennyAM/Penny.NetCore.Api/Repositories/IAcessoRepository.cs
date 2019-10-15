@@ -11,5 +11,6 @@ namespace Penny.NetCore.Api.Repositories
         void Cadastrar(Acesso acesso);
         void Atualizar(Acesso acesso);
         void Deletar(int id);
+        void Salvar();
     }
 }

@@ -9,28 +9,29 @@ using Penny.NetCore.Api.Repositories;
 
 namespace Penny.NetCore.Api.Api
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    //   [Route("api/[controller]")]
+    //  [ApiController]
     public class CarrinhoCompraController : ControllerBase
     {
-        private ICarrinhoCompraRepository _rep;
+        //    private ICarrinhoCompraRepository _rep;
 
 
-        public CarrinhoCompraController(ICarrinhoCompraRepository carrinhoCompraRepository) {
+        //   public CarrinhoCompraController(ICarrinhoCompraRepository carrinhoCompraRepository) {
 
-            _rep = carrinhoCompraRepository;
+        //     _rep = carrinhoCompraRepository;
 
-        }
+        //  }
 
-        [HttpPost]
-        public IActionResult Cadastrar([FromBody]CarrinhoCompra model)
-        {
+        //   [HttpPost]
+        //   public IActionResult Cadastrar([FromBody]CarrinhoCompra model)
+        //   {
 
-            _rep.Cadastrar(model);
-            _rep.Salvar();
-            return Created(); //201
+        //    _rep.Cadastrar(model);
+        //   _rep.Salvar();
+        //   return Created(); //201
 
-        }
+    }
+
 
         //[HttpPost]
         //public IActionResult Incluir([FromBody] LivroUpload model)
@@ -46,5 +47,5 @@ namespace Penny.NetCore.Api.Api
         //}
 
 
-    }
+   // }
 }

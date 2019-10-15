@@ -19,37 +19,38 @@ namespace Penny.NetCore.Api.Repositories
 
         public void Atualizar(Produto produto)
         {
-            throw new NotImplementedException();
+            _context.Produtos.Update(produto);
         }
 
         public IList<Produto> BuscarPor(Expression<Func<Produto, bool>> filtro)
         {
-            throw new NotImplementedException();
+            return _context.Produtos.Where(filtro).ToList();
         }
 
         public Produto BuscarPorId(int id)
         {
-            throw new NotImplementedException();
+            return _context.Produtos.Find(id);
         }
 
         public void Cadastrar(Produto produto)
         {
-            throw new NotImplementedException();
+            _context.Produtos.Add(produto);
         }
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            var produto = _context.Produtos.Find(id);
+            _context.Produtos.Remove(produto);
         }
 
         public IList<Produto> Listar()
         {
-            throw new NotImplementedException();
+            return _context.Produtos.ToList();
         }
 
         public void Salvar()
         {
-            throw new NotImplementedException();
+            _context.SaveChanges();
         }
     }
 }

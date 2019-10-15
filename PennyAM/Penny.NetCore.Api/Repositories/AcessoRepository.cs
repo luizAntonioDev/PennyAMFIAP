@@ -18,17 +18,23 @@ namespace Penny.NetCore.Api.Repositories
 
         public void Atualizar(Acesso acesso)
         {
-            throw new NotImplementedException();
+            _context.Acessos.Update(acesso);
         }
 
         public void Cadastrar(Acesso acesso)
         {
-            throw new NotImplementedException();
+            _context.Acessos.Add(acesso);
         }
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            var acesso = _context.Acessos.Find(id);
+            _context.Acessos.Remove(acesso);
+        }
+
+        public void Salvar()
+        {
+            _context.SaveChanges();
         }
     }
 }
