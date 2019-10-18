@@ -5,11 +5,17 @@
 
 <h2>Cadastrar Estabelecimento</h2>
 <form asp-action="cadastrar">
-
-    <partial name="_Acesso" />
-
-    <partial name="_Usuario" />
-
-    <partial name="_Endereco" />
+    <div class="form-group">
+        <partial name="_Acesso" />
+    </div>
+    <div class="form-group">
+        <partial name="_Usuario" />
+    </div>
+    <div class="form-group">
+        <partial name="_Endereco" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Cadastrar" class="btn btn-primary " />
+    </div>
 </form>
 

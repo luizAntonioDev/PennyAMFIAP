@@ -33,6 +33,9 @@ namespace Penny.NetCore.Api.Controllers
 
         public IActionResult Cadastrar()
         {
+            Estabelecimento estabelecimento = new Estabelecimento();
+            estabelecimento.Endereco = new Endereco();
+            Usuario usuario = new Usuario();
             return View();       
         }
     
