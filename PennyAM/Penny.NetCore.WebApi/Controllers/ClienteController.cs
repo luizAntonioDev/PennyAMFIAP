@@ -18,12 +18,14 @@ namespace Penny.NetCore.WebApi.Controllers
         private readonly IAcessoRepository _acessoRepository;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IClienteRepository _clienteRepository;
+        private readonly ICarrinhoCompraRepository _carrinhoRepository;
 
-        public ClienteController(IAcessoRepository acessoRepository, IUsuarioRepository usuarioRepository, IClienteRepository clienteRepository)
+        public ClienteController(IAcessoRepository acessoRepository, IUsuarioRepository usuarioRepository, IClienteRepository clienteRepository, ICarrinhoCompraRepository carrinhoRepository)
         {
             _acessoRepository = acessoRepository;
             _usuarioRepository = usuarioRepository;
             _clienteRepository = clienteRepository;
+            _carrinhoRepository = carrinhoRepository;
         }
 
         [HttpGet]
@@ -108,6 +110,7 @@ namespace Penny.NetCore.WebApi.Controllers
             try
             {
                 Validacoes.ValidarCadastro(request);
+                List<CarrinhoCompra> carrinhoCompras = new List<CarrinhoCompra>();
 
                 var existeLogin = _acessoRepository.BuscarPorLogin(request.Login);
 
@@ -135,7 +138,8 @@ namespace Penny.NetCore.WebApi.Controllers
                 {
                     Usuario = request.Cliente.Usuario,
                     Endereco = request.Cliente.Endereco,
-                    Cpf = request.Cliente.Cpf
+                    Cpf = request.Cliente.Cpf,
+                    CarrinhosCompras = carrinhoCompras
                 });
 
                 return Ok("Cliente " + cliente.ClienteId + "cadastrado com sucesso");
