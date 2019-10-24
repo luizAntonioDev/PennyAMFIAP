@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Penny.NetCore.WebApi.Models;
+using Penny.NetCore.WebApi.Models.Request;
 using Penny.NetCore.WebApi.Repositories;
 
 namespace Penny.NetCore.WebApi.Controllers
@@ -21,7 +22,7 @@ namespace Penny.NetCore.WebApi.Controllers
 
         [HttpPost]
         [Route("Cadastrar/{UsuarioId}")]
-        public IActionResult Cadastrar([FromRoute]int UsuarioId, [FromBody] Estabelecimento request)
+        public IActionResult Cadastrar([FromBody] EstabelecimentoRequest request, [FromRoute]int UsuarioId)
         {
             try
             {
@@ -57,7 +58,7 @@ namespace Penny.NetCore.WebApi.Controllers
 
         [HttpPost]
         [Route("Atualizar/{Cnpj}")]
-        public IActionResult Atualizar([FromRoute]string Cnpj, [FromBody] Estabelecimento request)
+        public IActionResult Atualizar([FromBody] EstabelecimentoRequest request, [FromRoute]string Cnpj)
         {
             try
             {

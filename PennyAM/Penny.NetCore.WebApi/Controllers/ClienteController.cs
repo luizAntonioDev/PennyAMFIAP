@@ -18,14 +18,14 @@ namespace Penny.NetCore.WebApi.Controllers
         private readonly IAcessoRepository _acessoRepository;
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IClienteRepository _clienteRepository;
-        private readonly ICarrinhoCompraRepository _carrinhoRepository;
+        private readonly IEnderecoRepository _enderecoRepository;
 
-        public ClienteController(IAcessoRepository acessoRepository, IUsuarioRepository usuarioRepository, IClienteRepository clienteRepository, ICarrinhoCompraRepository carrinhoRepository)
+        public ClienteController(IAcessoRepository acessoRepository, IUsuarioRepository usuarioRepository, IClienteRepository clienteRepository, IEnderecoRepository enderecoRepository)
         {
             _acessoRepository = acessoRepository;
             _usuarioRepository = usuarioRepository;
             _clienteRepository = clienteRepository;
-            _carrinhoRepository = carrinhoRepository;
+            _enderecoRepository = enderecoRepository;
         }
 
         [HttpGet]
@@ -62,9 +62,9 @@ namespace Penny.NetCore.WebApi.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("Atualizar")]
-        public IActionResult Atualizar([FromBody] CadastroUsuario request)
+        public IActionResult Atualizar([FromBody] CadastroUsuarioRequest request)
         {
             try
             {
@@ -79,8 +79,7 @@ namespace Penny.NetCore.WebApi.Controllers
                 var acesso = _acessoRepository.Atualizar(new Acesso()
                 {
                     Login = request.Login,
-                    Senha = request.Senha,
-                    Tipo = PennyConfig.TipoUsuario.Cliente
+                    Senha = request.Senha
                 });
 
                 var cliente = _clienteRepository.BuscarPorId(request.Cliente.ClienteId);
@@ -89,8 +88,15 @@ namespace Penny.NetCore.WebApi.Controllers
                     return BadRequest("Cliente não Cadastrado");
                 }
 
-                cliente.Usuario.Nome = request.Cliente.Usuario.Nome;
-                cliente.Endereco = request.Cliente.Endereco;
+                cliente.Usuario.Nome = request.Cliente.Nome;
+                cliente.DataNascimento = request.Cliente.DataNascimento;
+                cliente.CashDisponivel = request.Cliente.CashDisponivel;
+                cliente.Usuario.Foto = request.Cliente.Foto;
+
+                if (request.Cliente.Endereco != null)
+                {
+                    cliente.Endereco = request.Cliente.Endereco;
+                }
 
                 cliente = _clienteRepository.Atualizar(cliente);
 
@@ -103,27 +109,43 @@ namespace Penny.NetCore.WebApi.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("{ClienteId}")]
+        public IActionResult Deletar([FromRoute]int ClienteId)
+        {
+            try
+            {
+                var cliente = _clienteRepository.BuscarPorId(ClienteId);
+                if (cliente == null)
+                {
+                    return BadRequest("Cliente não encontrado");
+                }
+
+                _acessoRepository.Deletar(cliente.Usuario.Acesso);
+
+                return Ok("Cliente deletado com sucesso");
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest("Error: " + e.Message);
+            }
+        }
+
         [HttpPost]
         [Route("Cadastrar")]
-        public IActionResult Cadastrar([FromBody] CadastroUsuario request)
+        public IActionResult Cadastrar([FromBody] CadastroUsuarioRequest request)
         {
             try
             {
                 Validacoes.ValidarCadastro(request);
-                List<CarrinhoCompra> carrinhoCompras = new List<CarrinhoCompra>();
 
                 var existeLogin = _acessoRepository.BuscarPorLogin(request.Login);
 
-                if (existeLogin == null)
+                if (existeLogin != null)
                 {
-                    return BadRequest("Acesso não  Cadastrado");
+                    return BadRequest("Cliente já  Cadastrado");
                 }
-                var acesso = _acessoRepository.Atualizar(new Acesso()
-                {
-                    Login = request.Login,
-                    Senha = request.Senha,
-                    Tipo = PennyConfig.TipoUsuario.Cliente
-                });
 
                 var cliente = _clienteRepository.BuscarPorId(request.Cliente.ClienteId);
                 if (cliente != null)
@@ -131,18 +153,43 @@ namespace Penny.NetCore.WebApi.Controllers
                     return BadRequest("Cliente já  Cadastrado com esse Id");
                 }
 
-                cliente.Usuario.Nome = request.Cliente.Usuario.Nome;
-                cliente.Endereco = request.Cliente.Endereco;
+                var acesso = _acessoRepository.Cadastrar(new Acesso()
+                {
+
+                    Login = request.Login,
+                    Senha = request.Senha
+                });
+
+                var usuario = _usuarioRepository.Cadastrar(new Usuario()
+                {
+                    AcessoId = acesso.AcessoId,
+                    Nome = request.Cliente.Nome,
+                    Foto = request.Cliente.Foto
+                });
+
 
                 cliente = _clienteRepository.Cadastrar(new Cliente()
                 {
-                    Usuario = request.Cliente.Usuario,
-                    Endereco = request.Cliente.Endereco,
-                    Cpf = request.Cliente.Cpf,
-                    CarrinhosCompras = carrinhoCompras
+                    Usuario = usuario,
+                    Documento = request.Cliente.Documento,
+                    CashDisponivel = request.Cliente.CashDisponivel,
+                    DataNascimento = request.Cliente.DataNascimento
                 });
 
-                return Ok("Cliente " + cliente.ClienteId + "cadastrado com sucesso");
+                if (request.Cliente.Endereco != null)
+                {
+                    _enderecoRepository.Cadastrar(new Endereco()
+                    {
+                        Bairro = request.Cliente.Endereco.Bairro,
+                        Logradouro = request.Cliente.Endereco.Logradouro,
+                        Cidade = request.Cliente.Endereco.Cidade,
+                        Estado = request.Cliente.Endereco.Estado,
+                        Cep = request.Cliente.Endereco.Cep,
+                        Numero = request.Cliente.Endereco.Numero
+                    });
+                }
+
+                return Ok("Cliente " + cliente.ClienteId + " cadastrado com sucesso");
             }
             catch (Exception e)
             {

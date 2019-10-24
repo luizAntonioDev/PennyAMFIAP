@@ -8,10 +8,10 @@ namespace Penny.NetCore.WebApi.Models
     public class CarrinhoCompra
     {
         public int CarrinhoCompraId { get; set; }
-        public List<Produto> Produtos { get; set; }
+        public List<ProdutoCarrinho> ProdutosCarrinho { get; set; }
         public DateTime DataCarrinho { get; set; }
         public bool Ativo { get; set; }
-        public Usuario Usuario { get; set; }
+        public Cliente Cliente { get; set; }
 
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Penny.NetCore.WebApi.Models
+namespace Penny.NetCore.WebApi.Models.Request
 {
-    public class Produto
+    public class ProdutoRequest
     {
         public int ProdutoId { get; set; }
         public string Nome { get; set; }
@@ -15,7 +15,5 @@ namespace Penny.NetCore.WebApi.Models
         public string CodigoBarra { get; set; }
         public decimal? Preco { get; set; }
         public int EstabelecimentoId { get; set; }
-        public Estabelecimento Estabelecimento { get; set; }
-
     }
 }

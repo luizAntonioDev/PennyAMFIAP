@@ -21,7 +21,7 @@ namespace Penny.NetCore.WebApi.Controllers
 
         [HttpPost]
         [Route("Atualizar/{Id}")]
-        public IActionResult Atualizar([FromRoute] int Id, [FromBody] Endereco request)
+        public IActionResult Atualizar([FromBody] Endereco request, [FromRoute] int Id)
         {
             try
             {

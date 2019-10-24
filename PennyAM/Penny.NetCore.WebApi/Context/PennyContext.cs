@@ -23,6 +23,8 @@ namespace Penny.NetCore.WebApi.Context
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
 
+        public DbSet<ProdutoCarrinho> ProdutoCarrinho { get; set; }
+
 
 
     }

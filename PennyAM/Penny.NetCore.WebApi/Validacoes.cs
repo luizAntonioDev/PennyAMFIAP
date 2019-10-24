@@ -23,7 +23,7 @@ namespace Penny.NetCore.WebApi
             }
         }
 
-        public static void ValidarEstabelecimento(Estabelecimento value)
+        public static void ValidarEstabelecimento(EstabelecimentoRequest value)
         {
             if (string.IsNullOrEmpty(value.Cnpj))
             {
@@ -45,7 +45,7 @@ namespace Penny.NetCore.WebApi
             }
         }
 
-        public static void ValidarProduto(Produto value)
+        public static void ValidarProduto(ProdutoRequest value)
         {
             if (string.IsNullOrEmpty(value.Nome))
             {
@@ -64,7 +64,7 @@ namespace Penny.NetCore.WebApi
             }
         }
 
-        public static void ValidarCadastro(CadastroUsuario value)
+        public static void ValidarCadastro(CadastroUsuarioRequest value)
         {
 
             if (value.Cliente == null)
@@ -72,12 +72,12 @@ namespace Penny.NetCore.WebApi
                 throw new Exception("Informe os dados do Cliente");
             }
 
-            if (string.IsNullOrEmpty(value.Cliente.Usuario.Nome))
+            if (string.IsNullOrEmpty(value.Cliente.Nome))
             {
                 throw new Exception("Informe o nome");
             }
 
-            if (string.IsNullOrEmpty(value.Cliente.Cpf))
+            if (string.IsNullOrEmpty(value.Cliente.Documento))
             {
                 throw new Exception("Informe o Cpf");
             }

@@ -11,6 +11,7 @@ namespace Penny.NetCore.WebApi.Repositories
     {
         void Atualizar(Compra compra);
         void Deletar(int id);
+        Compra Cadastrar(Compra compra);
         Compra BuscarPorId(int id);
         IList<Compra> Listar();
         IList<Compra> BuscarPor(

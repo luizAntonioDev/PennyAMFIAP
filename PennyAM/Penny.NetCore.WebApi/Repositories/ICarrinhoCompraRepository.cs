@@ -9,9 +9,14 @@ namespace Penny.NetCore.WebApi.Repositories
     public interface ICarrinhoCompraRepository
     {
 
-        void Cadastrar(CarrinhoCompra carrinhoCompra);
+        CarrinhoCompra Cadastrar(CarrinhoCompra carrinhoCompra);
+        CarrinhoCompra ObterPorId(int carrinhoId);
 
-        void Salvar();
+        void Deletar(CarrinhoCompra carrinhoCompra);
+
+        void DeletarPorClienteId(List<CarrinhoCompra> carrinhoCompra);
+
+
 
     }
 }

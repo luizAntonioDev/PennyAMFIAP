@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Penny.NetCore.WebApi.Context;
 
 namespace Penny.NetCore.WebApi.Migrations
 {
     [DbContext(typeof(PennyContext))]
-    partial class PennyContextModelSnapshot : ModelSnapshot
+    [Migration("20191024061918_Inicio_V2")]
+    partial class Inicio_V2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

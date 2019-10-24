@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Penny.NetCore.WebApi.Models;
+using Penny.NetCore.WebApi.Models.Request;
 using Penny.NetCore.WebApi.Repositories;
 using System;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace Penny.NetCore.WebApi.Controllers
 
         [HttpPost]
         [Route("Cadastrar")]
-        public IActionResult Cadastrar([FromBody] Produto request)
+        public IActionResult Cadastrar([FromBody] ProdutoRequest request)
         {
             try
             {
@@ -48,9 +49,9 @@ namespace Penny.NetCore.WebApi.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("Atualizar")]
-        public IActionResult Atualizar([FromBody] Produto request)
+        public IActionResult Atualizar([FromBody] ProdutoRequest request)
         {
             try
             {

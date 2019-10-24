@@ -32,6 +32,13 @@ namespace Penny.NetCore.WebApi.Repositories
             return _context.Compras.Find(id);
         }
 
+        public Compra Cadastrar(Compra compra)
+        {
+            _context.Entry(compra).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+            _context.SaveChanges();
+            return compra;
+        }
+
         public void Deletar(int id)
         {
             var compra = _context.Compras.Find(id);

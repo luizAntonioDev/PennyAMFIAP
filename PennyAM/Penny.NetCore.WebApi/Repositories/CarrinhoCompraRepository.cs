@@ -16,14 +16,29 @@ namespace Penny.NetCore.WebApi.Repositories
             _context = context;
         }
 
-        public void Cadastrar(CarrinhoCompra carrinhoCompra)
+        public CarrinhoCompra Cadastrar(CarrinhoCompra carrinhoCompra)
         {
-            _context.Add(carrinhoCompra);
+            _context.Entry(carrinhoCompra).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+            _context.SaveChanges();
+            return carrinhoCompra;
         }
 
-        public void Salvar()
+        public void Deletar(CarrinhoCompra carrinhoCompra)
         {
-           _context.SaveChanges();
+            _context.Entry(carrinhoCompra).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _context.SaveChanges();
+        }
+
+        public void DeletarPorClienteId(List<CarrinhoCompra> carrinhoCompra)
+        {
+
+            _context.Entry(carrinhoCompra).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            _context.SaveChanges();
+        }
+
+        public CarrinhoCompra ObterPorId(int carrinhoId)
+        {
+            return _context.CarrinhoCompras.Where(x => x.CarrinhoCompraId == carrinhoId).FirstOrDefault();
         }
     }
 }

@@ -44,6 +44,7 @@ namespace Penny.NetCore.WebApi
             services.AddScoped<IEstabelecimentoRepository, EstabelecimentoRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IProdutoCarrinhoRepository, ProdutoCarrinhoRepository>();
 
             //String de conexao que sera utilizada
 
